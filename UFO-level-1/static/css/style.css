@@ -1,260 +1,226 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "metadata": {},
-   "outputs": [],
-   "source": [
-    "* {\n",
-    "  box-sizing: border-box;\n",
-    "  font-family: Ubuntu, sans-serif;\n",
-    "}\n",
-    "\n",
-    "\n",
-    "html,\n",
-    "body {\n",
-    "  height: 100%;\n",
-    "  padding: 0;\n",
-    "  margin: 0;\n",
-    "}\n",
-    "\n",
-    "\n",
-    "/* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */\n",
-    ".wrapper {\n",
-    "  position: relative;\n",
-    "  min-height: 100%;\n",
-    "  padding-bottom: 130px;\n",
-    "  overflow: auto;\n",
-    "}\n",
-    "\n",
-    "/* The footer is positioned at the bottom of the page */\n",
-    ".footer {\n",
-    "  position: absolute;\n",
-    "  right: 0;\n",
-    "  bottom: 0;\n",
-    "  left: 0;\n",
-    "  min-height: 100px;\n",
-    "  background: #4e5d6c;\n",
-    "}\n",
-    "\n",
-    "/* The code styles the text at the bottom of the footer */\n",
-    ".footer > .bottom {\n",
-    "  position: absolute;\n",
-    "  right: 0;\n",
-    "  bottom: 0;\n",
-    "  left: 0;\n",
-    "  padding: 5px;\n",
-    "  background: #1b3146;\n",
-    "}\n",
-    "\n",
-    ".navbar {\n",
-    "  padding: 5px;\n",
-    "  margin: 0;\n",
-    "}\n",
-    "\n",
-    "/* This CSS styles the ufo icon in the navbar */\n",
-    ".nav-ufo {\n",
-    "  position: absolute;\n",
-    "  bottom: 5px;\n",
-    "  left: 150px;\n",
-    "  width: 35px;\n",
-    "  color: white;\n",
-    "}\n",
-    "\n",
-    "/* Adding styles to the aside and filter form */\n",
-    ".ufo-form {\n",
-    "  margin-top: 50px;\n",
-    "}\n",
-    "\n",
-    ".filters .panel-body {\n",
-    "  padding: 0;\n",
-    "}\n",
-    "\n",
-    ".filters {\n",
-    "  margin-top: 10px;\n",
-    "}\n",
-    "\n",
-    "select {\n",
-    "  display: block;\n",
-    "  width: 100%;\n",
-    "  padding: 8px;\n",
-    "  color: #8e979f;\n",
-    "  outline: none;\n",
-    "}\n",
-    "\n",
-    "#table-area th {\n",
-    "  text-align: center;\n",
-    "}\n",
-    "\n",
-    "#table-area th:first-child,\n",
-    "#table-area th:nth-child(2),\n",
-    "#table-area th:nth-child(6) {\n",
-    "  min-width: 70px;\n",
-    "}\n",
-    "\n",
-    ".loader {\n",
-    "  margin-top: 50px;\n",
-    "}\n",
-    "\n",
-    ".margin-top-50 {\n",
-    "  margin-top: 50px;\n",
-    "}\n",
-    "\n",
-    "/* The styles for the parallax */\n",
-    ".hero {\n",
-    "  position: relative;\n",
-    "  height: 550px;\n",
-    "  padding: 20px;\n",
-    "  margin: 0;\n",
-    "  background: black;\n",
-    "  background-image: url(\"../images/nasa.jpg\");\n",
-    "  background-attachment: fixed;\n",
-    "  background-position: bottom center;\n",
-    "  background-size: cover;\n",
-    "}\n",
-    "\n",
-    ".hero h1 {\n",
-    "  margin-top: 200px;\n",
-    "  font-size: 0.1rem;\n",
-    "  animation: title 1.2s forwards linear;\n",
-    "}\n",
-    "\n",
-    ".hero p {\n",
-    "  font-size: 2rem;\n",
-    "  opacity: 0;\n",
-    "  animation: subtitle 1.2s forwards linear;\n",
-    "  animation-delay: 1.2s;\n",
-    "}\n",
-    "\n",
-    "/* input placeholder color changes */\n",
-    ".form-control::-webkit-input-placeholder {\n",
-    "  /* Chrome/Opera/Safari */\n",
-    "  color: #8e979f;\n",
-    "}\n",
-    "\n",
-    ".form-control::-moz-placeholder {\n",
-    "  /* Firefox 19+ */\n",
-    "  color: #8e979f;\n",
-    "}\n",
-    "\n",
-    ".form-control:-ms-input-placeholder {\n",
-    "  /* IE 10+ */\n",
-    "  color: #8e979f;\n",
-    "}\n",
-    "\n",
-    ".form-control:-moz-placeholder {\n",
-    "  /* Firefox 18- */\n",
-    "  color: #8e979f;\n",
-    "}\n",
-    "\n",
-    "/* media queries which will only be activated at specific screen sizes */\n",
-    "@media (max-width: 800px) {\n",
-    "  #table-area td {\n",
-    "    font-size: 1em;\n",
-    "  }\n",
-    "}\n",
-    "\n",
-    "@media (max-width: 500px) {\n",
-    "  #table-area thead {\n",
-    "    display: none;\n",
-    "  }\n",
-    "\n",
-    "  #table-area tr td:first-child {\n",
-    "    font-size: 1.8em;\n",
-    "    font-weight: bold;\n",
-    "    background: #1b3146;\n",
-    "  }\n",
-    "\n",
-    "  #table-area tr td:last-child {\n",
-    "    margin-bottom: 20px;\n",
-    "  }\n",
-    "\n",
-    "  #table-area tr td:last-child::after {\n",
-    "    display: block;\n",
-    "    width: 100%;\n",
-    "    height: 1px;\n",
-    "    margin-top: 20px;\n",
-    "    content: \" \";\n",
-    "    background: aliceblue;\n",
-    "  }\n",
-    "\n",
-    "  #table-area td {\n",
-    "    font-size: 1.25em;\n",
-    "  }\n",
-    "\n",
-    "  #table-area tbody td {\n",
-    "    display: block;\n",
-    "    text-align: center;\n",
-    "  }\n",
-    "\n",
-    "  #table-area tbody td::before {\n",
-    "    display: block;\n",
-    "    font-size: 1.4em;\n",
-    "    font-weight: bold;\n",
-    "    text-align: center;\n",
-    "    content: attr(data-th);\n",
-    "  }\n",
-    "\n",
-    "  .hero h1 {\n",
-    "    animation: smaller-title 1.2s forwards linear;\n",
-    "  }\n",
-    "}\n",
-    "\n",
-    "/* keyframe animations which will be used to animate the title */\n",
-    "@keyframes title {\n",
-    "  from {\n",
-    "    opacity: 0;\n",
-    "  }\n",
-    "\n",
-    "  to {\n",
-    "    font-size: 7.5rem;\n",
-    "    opacity: 1;\n",
-    "  }\n",
-    "}\n",
-    "\n",
-    "@keyframes smaller-title {\n",
-    "  from {\n",
-    "    opacity: 0;\n",
-    "  }\n",
-    "\n",
-    "  to {\n",
-    "    font-size: 5.5rem;\n",
-    "    opacity: 1;\n",
-    "  }\n",
-    "}\n",
-    "\n",
-    "@keyframes subtitle {\n",
-    "  from {\n",
-    "    opacity: 0;\n",
-    "  }\n",
-    "\n",
-    "  to {\n",
-    "    opacity: 1;\n",
-    "  }\n",
-    "}"
-   ]
+* {
+    box-sizing: border-box;
+    font-family: Ubuntu, sans-serif;
   }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.8.5"
+  
+  html,
+  body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
   }
- },
- "nbformat": 4,
- "nbformat_minor": 4
-}
+  
+  /* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
+  .wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 130px;
+    overflow: auto;
+  }
+  
+  /* The footer is positioned at the bottom of the page */
+  .footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    min-height: 100px;
+    background: #4e5d6c;
+  }
+  
+  /* The code styles the text at the bottom of the footer */
+  .footer > .bottom {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    background: #1b3146;
+  }
+  
+  .navbar {
+    padding: 5px;
+    margin: 0;
+  }
+  
+  /* This CSS styles the ufo icon in the navbar */
+  .nav-ufo {
+    position: absolute;
+    bottom: 5px;
+    left: 150px;
+    width: 35px;
+    color: white;
+  }
+  
+  /* Adding styles to the aside and filter form */
+  .ufo-form {
+    margin-top: 50px;
+  }
+  
+  .filters .panel-body {
+    padding: 0;
+  }
+  
+  .filters {
+    margin-top: 10px;
+  }
+  
+  select {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    color: #8e979f;
+    outline: none;
+  }
+  
+  #table-area th {
+    text-align: center;
+  }
+  
+  #table-area th:first-child,
+  #table-area th:nth-child(2),
+  #table-area th:nth-child(6) {
+    min-width: 70px;
+  }
+  
+  .loader {
+    margin-top: 50px;
+  }
+  
+  .margin-top-50 {
+    margin-top: 50px;
+  }
+  
+  /* The styles for the parallax */
+  .hero {
+    position: relative;
+    height: 550px;
+    padding: 20px;
+    margin: 0;
+    background: black;
+    background-image: url("../images/nasa.jpg");
+    background-attachment: fixed;
+    background-position: bottom center;
+    background-size: cover;
+  }
+  
+  .hero h1 {
+    margin-top: 200px;
+    font-size: 0.1rem;
+    animation: title 1.2s forwards linear;
+  }
+  
+  .hero p {
+    font-size: 2rem;
+    opacity: 0;
+    animation: subtitle 1.2s forwards linear;
+    animation-delay: 1.2s;
+  }
+  
+  /* input placeholder color changes */
+  .form-control::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #8e979f;
+  }
+  
+  .form-control::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #8e979f;
+  }
+  
+  .form-control:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #8e979f;
+  }
+  
+  .form-control:-moz-placeholder {
+    /* Firefox 18- */
+    color: #8e979f;
+  }
+  
+  /* media queries which will only be activated at specific screen sizes */
+  @media (max-width: 800px) {
+    #table-area td {
+      font-size: 1em;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    #table-area thead {
+      display: none;
+    }
+  
+    #table-area tr td:first-child {
+      font-size: 1.8em;
+      font-weight: bold;
+      background: #1b3146;
+    }
+  
+    #table-area tr td:last-child {
+      margin-bottom: 20px;
+    }
+  
+    #table-area tr td:last-child::after {
+      display: block;
+      width: 100%;
+      height: 1px;
+      margin-top: 20px;
+      content: " ";
+      background: aliceblue;
+    }
+  
+    #table-area td {
+      font-size: 1.25em;
+    }
+  
+    #table-area tbody td {
+      display: block;
+      text-align: center;
+    }
+  
+    #table-area tbody td::before {
+      display: block;
+      font-size: 1.4em;
+      font-weight: bold;
+      text-align: center;
+      content: attr(data-th);
+    }
+  
+    .hero h1 {
+      animation: smaller-title 1.2s forwards linear;
+    }
+  }
+  
+  /* keyframe animations which will be used to animate the title */
+  @keyframes title {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      font-size: 7.5rem;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes smaller-title {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      font-size: 5.5rem;
+      opacity: 1;
+    }
+  }
+  
+  @keyframes subtitle {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
